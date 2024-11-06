@@ -3,7 +3,7 @@ By: Zhan Wang, Department of Agricultural Economics, Purdue University.
 
 Contact: zhanwang@purdue.edu
 # Introduction
-This repository stores the R code to create GCM-specific shocks for simulations for the working paper of agricultural impacts of human heat stress in the US. The archive of model, data and simulations can be downloaded from https://dx.doi.org/10.13019/9D6K-DM27.
+This repository stores the R code to create GCM-specific shocks for simulations for the working paper of agricultural impacts of human heat stress in the US. The archive of model, data and simulations can be downloaded from https://github.com/wangzhan90/HeatStressPaper_model.
 
 # Description
 ## \cmf
