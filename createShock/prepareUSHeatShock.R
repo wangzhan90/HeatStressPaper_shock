@@ -1,4 +1,4 @@
-# create labor productivity shocks from 14 GCM and 4 climate scenarios
+# create labor productivity shocks for US grid cells
 # Zhan Wang (zhanwang@purdue.edu)
 
 rm(list = ls())
@@ -142,23 +142,24 @@ for (gcm in gcm.list){
     df.heatShock$y = round(df.heatShock$y,digits = 4)
     
     assign(paste0("f",yindex,".",xindex), ggplot() + 
-      geom_tile(data=df.heatShock, aes(x=x, y=y, fill=shock)) + 
-      geom_polygon(data=FRR.polygon, aes(x=long, y=lat, group=group), 
-                     fill=NA, color="black", linewidth=0.2) +
-      scale_fill_gradientn(colours = myPalette(100),
-                           limits=c(minShock,maxShock))+
-      ggtitle(gcm)+
-      theme(axis.line=element_blank(),
-            axis.text.x=element_blank(),
-            axis.text.y=element_blank(),
-            axis.ticks=element_blank(),
-            axis.title.x=element_blank(),
-            axis.title.y=element_blank(),
-            panel.grid.major = element_blank(), 
-            panel.grid.minor = element_blank(),
-            panel.background = element_blank(),
-            axis.title = element_text(size = 25),
-            plot.title = element_text(size = 15))
+             geom_tile(data=df.heatShock, aes(x=x, y=y, fill=shock)) + 
+             geom_polygon(data=FRR.polygon, aes(x=long, y=lat, group=group), 
+                          fill=NA, color="black", linewidth=0.2) +
+             scale_fill_gradientn(name = "Labor productivity \nchange (%)",colours = myPalette(100),
+                                  limits=c(minShock,maxShock))+
+             ggtitle(gcm)+
+             theme(axis.line=element_blank(),
+                   axis.text.x=element_blank(),
+                   axis.text.y=element_blank(),
+                   axis.ticks=element_blank(),
+                   axis.title.x=element_blank(),
+                   axis.title.y=element_blank(),
+                   panel.grid.major = element_blank(), 
+                   panel.grid.minor = element_blank(),
+                   panel.background = element_blank(),
+                   axis.title = element_text(size = 25),
+                   plot.title = element_text(size = 12),
+                   legend.position = "bottom", legend.direction = "horizontal")
     )
     xindex = xindex + 1
   }
@@ -169,13 +170,12 @@ for (gcm in gcm.list){
 
 fig.list = list(f1.1, f2.1, f3.1, f4.1, f5.1,
                 f6.1, f7.1, f8.1, f9.1, f10.1,
-                axis.0, f11.1, f12.1, f13.1,axis.0)
+                f11.1, f12.1, f13.1, axis.0, axis.0)
 
 
-ggarrange(plotlist = fig.list, ncol=5, nrow=3, common.legend = T, legend="right",
-          widths = c(rep(2.5,5)), 
-          heights = c(rep(1.5,3)))
+ggarrange(plotlist = fig.list, ncol=3, nrow=5, common.legend = T, legend="bottom",
+          widths = c(rep(2.5,3)), 
+          heights = c(rep(1.5,5)))
 
-ggsave(paste0("Figure/","HeatStressShock_3C",".png"),
-       width=sum(c(rep(2.5,5))), height=sum(c(rep(1.5,3))))
-
+ggsave(paste0("Figure/","HeatStressShock_3C_3col_horiLegend",".png"),
+       width=sum(c(rep(2.5,3))), height=sum(c(rep(1.5,5))))
