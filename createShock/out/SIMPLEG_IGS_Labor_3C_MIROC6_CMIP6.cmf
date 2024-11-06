@@ -1,0 +1,180 @@
+!===========================================================================!
+!  SIMPLE-G                                                                 !
+!          a Simplified International Model of agricultural Prices,         !
+!          Land use and the Environment                                     !
+!          Global to Local Analysis of Systems Sustainability               !
+!          Purdue University, IN, USA                                       !
+!===========================================================================!
+!
+! This command file runs the experiments for SIMPLE-G. It tells the model where
+! find the input files, where to save output files, and solution parameters. 
+! It also summarizes the closure file <which variables are determined by 
+! the program (endogenous) or dicatated by user via shock inputs (exogenous).
+! Iman Haqiqi 09/19/2019 
+!
+! This Command file
+! SIMPLE-G_US-AllCrops-Model-07-31-2019\Baseline_2010_2050.cmf
+! was prepared for SIMPLE-G I-GUIDE Summer School, Aug 2023
+!
+! ***** PLEASE ONLY MAKE CHANGES ON THE CLOSURE AND SHOCK SECTION ***** !
+
+! Options
+! ------------
+ start with mmnz = 2000;
+ LU decompose transpose = yes ; 
+ dpn = yes ;
+ cpu = yes ;
+! -------------------
+
+! Input files
+! ------------
+ File GRIDSETS = in/GRIDSETS.har ; !  set file       
+ File GRIDDATA = in/GRIDDATA.har ; !  base data
+ File GRIDPARM = in/GRIDPARM.har ; !  parameter data
+
+! Output files
+! ------------
+ LOG file      = out/<cmf>.log;
+ Solution file = out/<cmf>;
+ Updated file GRIDDATA = out/<cmf>.upd ;
+ condensation information file = out/<cmf>_cond.txt;
+
+! Output files [NEW]
+! ------------
+File out_pct      = out/<cmf>_pct.txt ;
+File reported_var = out/<cmf>_var.txt ;
+
+
+! Closure
+! -------
+!                   KEY EXOGENOUS VARIABLES
+Exogenous  p_INC_PC   ;!per capita income by inc. reg.
+Exogenous  p_POP      ;!population by inc. reg.
+Exogenous  p_QCRPBIOF ;!crop demand for global biofuel use
+Exogenous  s_QCRPBIOFr ;!crop demand for biofuel use | alternative
+
+Exogenous  p_P(NFOOD_COMM,REG) ;!price of non-food commodities by inc. reg.
+Exogenous  p_PNCRPFEED ;!price of non-feed inputs used in livestock prod.
+Exogenous  p_PNCRPFOOD ;!price of non-crop inputs used in proc. food prod.
+
+!                      Livestock Sector
+Exogenous  p_AOCRPFEED   ;!hicks-neutral eff. index in livestock prod.
+Exogenous  p_AFCRPFEEDW  ;!sub-component of feed eff. index by inc. reg. (global)
+Exogenous  p_AFCRPFEEDr  ;!sub-component of feed eff. index by inc. reg. (reg. specific)
+Exogenous  p_AFNCRPFEEDW ;!sub-component of non-feed eff. index by inc. reg. (global)
+Exogenous  p_AFNCRPFEEDr ;!sub-component of non-feed eff. index by inc. reg. (reg. specific)
+
+!                      Processed Food Sector
+Exogenous  p_AOCRPFOOD   ;!hicks-neutral eff. index in proc. food prod.
+Exogenous  p_AFNCRPFOODW ;!sub-component of eff. index of non-crop inputs in proc. food prod. by inc. reg. (global)
+Exogenous  p_AFCRPFOODW  ;!sub-component of eff. index of crops in proc. food prod. by inc. reg. (global)
+Exogenous  p_AFCRPFOODr  ;!sub-component of eff. index of crops in proc. food prod. by inc. reg. (reg. specific)
+Exogenous  p_AFNCRPFOODr ;!sub-component of eff. index of non-crop inputs in proc. food prod. by inc. reg. (reg. specific)
+
+!                    EFFICIENCY VARIABLES (also exogenous)
+Exogenous   p_AOCROPgl  ;! efficiency index by grid & ltype for CROP
+Exogenous  p_AFNITROgl  ;! efficiency index by grid & ltype for NITRO
+Exogenous   p_AFLANDgl  ;! efficiency index by grid & ltype for LAND
+Exogenous  p_AFNLANDgl  ;! efficiency index by grid & ltype for NLAND
+Exogenous  p_AFWATERgl  ;! efficiency index by grid & ltype for WATER
+!Exogenous  p_AFWATSGgl  ;! efficiency index by grid & ltype for WATSG
+!Exogenous  p_AFWEQPTgl  ;! efficiency index by grid & ltype for WEQPT
+Exogenous  p_AFLABORgl  ;! efficiency index by grid & ltype for LABOR
+
+Exogenous   p_AOCROPrl  ;! efficiency index by grid & reg for CROP
+Exogenous  p_AFNITROrl  ;! efficiency index by grid & reg for NITRO
+Exogenous   p_AFLANDrl  ;! efficiency index by grid & reg for LAND
+Exogenous  p_AFNLANDrl  ;! efficiency index by grid & reg for NLAND
+Exogenous  p_AFWATERrl  ;! efficiency index by grid & reg for WATER
+Exogenous  p_AFWATSGrl  ;! efficiency index by grid & reg for WATSG
+Exogenous  p_AFWEQPTrl  ;! efficiency index by grid & reg for WEQPT
+Exogenous  p_AFLABORrl  ;! efficiency index by grid & reg for LABOR
+
+!Exogenous   p_AOCROPg  ;! efficiency index by grid for CROP
+!Exogenous  p_AFNITROg  ;! efficiency index by grid for NITRO
+!Exogenous   p_AFLANDg  ;! efficiency index by grid for LAND
+!Exogenous  p_AFNLANDg  ;! efficiency index by grid for NLAND
+!Exogenous  p_AFWATERg  ;! efficiency index by grid for WATER
+!Exogenous  p_AFWATSGg  ;! efficiency index by grid for WATSG
+!Exogenous  p_AFWEQPTg  ;! efficiency index by grid for WEQPT
+!Exogenous  p_AFLABORg  ;! efficiency index by grid for LABOR
+
+Exogenous   p_AOCROPr  ;! efficiency index by reg for CROP
+Exogenous  p_AFNITROr  ;! efficiency index by reg for NITRO
+Exogenous   p_AFLANDr  ;! efficiency index by reg for LAND
+Exogenous  p_AFNLANDr  ;! efficiency index by reg for NLAND
+Exogenous  p_AFWATERr  ;! efficiency index by reg for WATER
+Exogenous  p_AFWATSGr  ;! efficiency index by reg for WATSG
+Exogenous  p_AFWEQPTr  ;! efficiency index by reg for WEQPT
+Exogenous  p_AFLABORr  ;! efficiency index by reg for LABOR
+
+Exogenous  p_AFCAP  ;! efficiency index by g&l for capital
+
+!                   POLICY VARIABLES (also exogenous)
+!   Nitrogen input levers                                          !
+Exogenous  t_PNITROs   ;! Ad valorem tax on Nitrogen by state !
+Exogenous  t_PNITROsl  ;! Ad valorem tax on Nitrogen by state & ltype !
+Exogenous  t_PNITROgl  ;! Ad valorem tax on Nitrogen by grid & ltype !
+Exogenous  s_PNITROgl  ;! Slack to control nitrogen prices by grid & ltype !
+!   Corn-soy output levers                                        !
+Exogenous  t_PCROPgl   ;! Subsidy on corn-soy output by grid !
+
+!   Land water levers                                             !
+Exogenous  s_QWATERg   ;! Slack to control water use by grid !
+Exogenous  s_QLANDg    ;! Slack to target corn-soy harvested area by grid (in 1000 ha) !;
+Exogenous  s_QWEQPTg   ;! water requiremend index
+Exogenous  s_QLABORr   ;! Slack to control labor by reg
+Exogenous  s_QCAPr   ;! Slack to control capital by reg
+Exogenous  s_QNITROr   ;! Slack to control Nitro Fertilizer by reg
+Exogenous  s_QWATSRFgl ;! Slack to control surface water
+Exogenous  s_QWATGRDgl ;! Slack to control groundwater
+
+REST Endogenous;
+
+! Verbal description and solution method
+! ------------------
+Verbal Description = <cmf>;
+Method = Gragg;
+Steps = 2 4 6;
+subintervals = 5;
+
+automatic accuracy = NO;
+accuracy figures = 2;
+accuracy percent = 80;
+minimum subinterval length =  0.001; ! default is 0.000001 ( 10-6 )
+minimum subinterval fails = stop;
+accuracy criterion = both;
+
+! ************** !
+! Shocks Section !
+! ************** !
+! Socio-economic shocks !
+
+!Shock p_POP = file shf/userData.HAR header "POP"; !  from GEC paper
+!Shock p_INC_PC = file shf/userData.HAR header "INC"; !  from GEC paper
+!Shock p_AOCROPr = file shf/userData.HAR header "TFPC"; !  from GEC paper
+!Shock p_AOCRPFEED = file shf/userData.HAR header "TFPL"; ! Ludena et al. (2007), 2001-40
+!Shock p_AOCRPFOOD = file shf/userData.HAR header "TFPP"; ! Emvalomatis et al. (2009), 2010-50
+!Shock p_QCRPBIOF = file shf/userData.HAR header "QBIO"; !
+
+! Climate shocks !
+!Shock p_AOCROPgl(GRID,"Rainfed") = file shf/userData.HAR header "RYCC"; !  climate change relative yield
+Shock p_AFLABORgl = file shf/Labor_3C_MIROC6_CMIP6.shk; !  heat stress
+!Shock s_QWATGRDgl(GRID,"Irrigated") = file shf/userData.HAR header "WAT3"; !  water withdraw: middle of road
+
+!Subtotal p_POP p_INC_PC p_QCRPBIOF = SE;
+!Subtotal p_AOCROPr p_AOCRPFEED p_AOCRPFOOD = TFP;
+!Subtotal p_AOCROPgl(GRID,"Rainfed") = Yield;
+!Subtotal s_QWATGRDgl(GRID,"Irrigated") = Water;
+Subtotal p_AFLABORgl = Heat;
+Subtotal p_AFLABORgl(HL_GRID, LTYPE) = HL_Heat;
+Subtotal p_AFLABORgl(NC_GRID, LTYPE) = NC_Heat;
+Subtotal p_AFLABORgl(NG_GRID, LTYPE) = NG_Heat;
+Subtotal p_AFLABORgl(PG_GRID, LTYPE) = PG_Heat;
+Subtotal p_AFLABORgl(EU_GRID, LTYPE) = EU_Heat;
+Subtotal p_AFLABORgl(SS_GRID, LTYPE) = SS_Heat;
+Subtotal p_AFLABORgl(FR_GRID, LTYPE) = FR_Heat;
+Subtotal p_AFLABORgl(BR_GRID, LTYPE) = BR_Heat;
+Subtotal p_AFLABORgl(MP_GRID, LTYPE) = MP_Heat;
+Subtotal p_AFLABORgl(US_GRID, LTYPE) = US_Heat;
+Subtotal p_AFLABORgl(ROW_GRID, LTYPE) = ROW_Heat;

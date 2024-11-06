@@ -1,0 +1,77 @@
+file gtapPARM = default.prm;
+Verbal Description =
+numeraire shock;
+Method = Johansen;
+Steps = 1;
+automatic accuracy = no;
+exogenous
+          pop
+          psaveslack pfactwld
+          profitslack incomeslack endwslack
+          cgdslack tradslack
+          ams atm atf ats atd
+          aosec aoreg avasec avareg
+          afcom afsec afreg afecom afesec afereg
+          aoall afall afeall
+! if AIDADS in Main Model
+!         apriv agov asav
+! if CDE in main model
+          au dppriv dpgov dpsave        
+          to tp tm tms tx txs
+          toreplace 
+          qo(ENDW_COMM,REG)
+          apurchsec apurchreg apurchall endwslackagr endwslacknagr
+          tf_ir tf_ijr tfd tfm
+          ah ahsec
+lpov ahpov ato2
+ ;
+
+Rest Endogenous ;
+
+Shock pfactwld = uniform 10;
+
+!@ contents of CMFStart when this EXP file was last saved
+!@ below is a record only....not read by RunGTAP
+!@ RunGTAP reads from the actual CMFSTART file
+!@ ! If a version has no CMFSTART file of its own
+!@ ! RunGTAP creates one by copying the supplied file CMFSTART.DEF
+!@ CPU = yes;  ! log show simulation times
+!@ NDS = yes;  ! no displays
+!@ Extrapolation accuracy file = NO ; ! No XAC file
+!@ !servants=1; ! use 2 processors at once, if possible
+!@ 
+!@ XSET Agriculture # 14 Ag sectors # 
+!@   (pdr, wht, gro, v_f, osd, c_b, pfb, ocr, ctl, oap, rmk, wol, frs, fsh) ;
+!@ XSUBSET Agriculture is subset of TRAD_COMM ;
+!@ 
+!@ XSET Extraction # 4 Extraction # (coa, oil, gas, oxt) ;
+!@ XSUBSET Extraction is subset of TRAD_COMM ;
+!@ 
+!@ XSET Mnfcing # 27 Manf sectors # (cmt, omt, vol, mil, pcr, sgr, ofd, 
+!@     b_t, tex, wap, lea, lum, ppp, p_c, chm, bph, rpp, nmm, i_s, nfm, 
+!@     fmp, ele, eeq, ome, mvh, otn, omf) ;
+!@ XSUBSET Mnfcing is subset of TRAD_COMM ;
+!@ 
+!@ XSET Constr # 4 construction sectors # (ely, gdt, wtr, cns) ;
+!@ XSUBSET Constr is subset of TRAD_COMM ;
+!@ 
+!@ XSET Trade # 1 Trade # (trd) ;
+!@ XSUBSET Trade is subset of TRAD_COMM ;
+!@ 
+!@ XSET Transport # 3 Transport sectors # (otp, wtp, atp) ;
+!@ XSUBSET Transport is subset of TRAD_COMM ;
+!@ 
+!@ XSET Services # 12 service sectors # (afs, whs, cmn, ofi, ins, rsa, obs, ros, 
+!@                                         osg, edu, hht, dwe) ;
+!@ XSUBSET Services is subset of TRAD_COMM ;
+!@ 
+!@ ! Labor categories to shock !
+!@ XSET white # White collar lab # (off_mgr_pros, clerks);
+!@ XSUBSET white is subset of ENDW_COMM ; 
+!@ XSET blue # blue collar lab # (ag_othlowsk);
+!@ XSUBSET blue is subset of ENDW_COMM ; 
+!@ XSET pink # pink collar lab # (service_shop);
+!@ XSUBSET pink is subset of ENDW_COMM ; 
+!@ XSET purple # purple collar lab # (tech_aspros);
+!@ XSUBSET purple is subset of ENDW_COMM ; 
+!@ end of CMFSTART part
