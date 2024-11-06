@@ -10,7 +10,7 @@ This repository stores the R code to create GCM-specific shocks for simulations 
 This folder contains the basic command files for the “cmf_HeatStress_baseline” and “cmf_HeatStress_2050” scenarios, which are used in creating GCM-specific command files.
 ## \Data
 This folder contains three datasets:
-\labor_HeatStressUS: the folder contains grid cell level labor productivity loss due to heat stress from “Saeed, W., I. Haqiqi, Q. Kong, M. Huber, J. R. Buzan, S. Chonabayashi, K. Motohashi, and T. W. Hertel. "The poverty impacts of labor heat stress in West Africa under a warming climate." Earth's Future 10, no. 11 (2022). https://doi.org/10.1029/2022EF002777”.
+\labor_HeatStressUS: the folder contains grid cell level labor productivity loss due to heat stress from “Saeed, W., I. Haqiqi, Q. Kong, M. Huber, J. R. Buzan, S. Chonabayashi, K. Motohashi, and T. W. Hertel. "The poverty impacts of labor heat stress in West Africa under a warming climate." Earth's Future 10, no. 11 (2022). https://doi.org/10.1029/2022EF002777 ”.
 The code for processing the grid level data is available from https://github.com/ihaqiqi/agLaborHeatUS. 
 Wajiha 2022: this folder contains the GTAP region level labor productivity loss for non-US regions, which is also from Saeed et al. (2022).
 userData.HAR: this file contains other shocks used in the alternative scenario “cmf_HeatStress_2050”. Data sources are described in the supplementary material “S5. Additional scenario: Heat stress and other drivers projected by 2050” of this paper.
